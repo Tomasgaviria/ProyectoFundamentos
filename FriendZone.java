@@ -5,5 +5,6 @@ public class FriendZone{
         String hombre = scan.next();
         String mujer = scan.next();
         System.out.println(hombre +" deja en la friend zone "+ mujer);
+        System.out.println("que pecao");
     }
 }
