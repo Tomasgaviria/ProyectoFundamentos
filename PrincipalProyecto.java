@@ -10,11 +10,11 @@ public class PrincipalProyecto{
         while(true){
             System.out.println("Ingrese número:");
             int n = scan.nextInt();
-           if(Vehiculo.posAnadir<Vehiculo.TAMANO){
              if(n == 0){
                 break;
             }
              else if(n == 1){
+                   if (Vehiculo.posAnadir<Vehiculo.TAMANO){
                   System.out.println("Ingrese modelo:");
                   int modelo = scan.nextInt();
                   System.out.println("Ingrese marca:");
@@ -24,7 +24,9 @@ public class PrincipalProyecto{
                   System.out.println("Ingrese color:");
                   String color = scan.next();
                   Vehiculo v1 = new Vehiculo(modelo, marca, valorComercial, color);
-             }
+              }else {System.out.println("Error base de datos llena");
+               }
+            }
              else if(n == 2){
                  System.out.println(Vehiculo.toStringVehiculos());
              }
@@ -59,10 +61,6 @@ public class PrincipalProyecto{
                }else{
                break;
              }
-          }else{
-            System.out.println("Error base de datos llena");
-             break;
             }
-      }
     }
 }
