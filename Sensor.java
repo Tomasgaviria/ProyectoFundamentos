@@ -1,26 +1,14 @@
 import java.util.ArrayList;
 public class Sensor {
-    public static Sensor[] sensores = new Sensor[8];
-    public static final int TAMAÑO = 8;
-    public static int posAñadir = 0;
     private String tipo;
     private double valor;
-    public static Sensor [] teOrden;
 
     public Sensor(){
-        sensores[posAñadir] = this;
-        posAñadir = posAñadir++;
     }
 
     public Sensor(String t, double v){
         this.tipo = t;
         this.valor = v;
-        sensores[posAñadir] = this;
-        posAñadir = posAñadir++;
-    }
-
-    public int getPosAñadir(){
-        return this.posAñadir;
     }
 
     public String getTipo(){
@@ -29,10 +17,6 @@ public class Sensor {
 
     public double getValor(){
         return this.valor;
-    }
-
-    public int setPosAñadir(int pos){
-        return this.posAñadir = pos;
     }
 
     public String setTipo(String t){
@@ -48,68 +32,71 @@ public class Sensor {
         return infoSensor;                
     } 
 
-    public static String toStringSensores(){
+    public static String toStringSensores(Vehiculo v1){
         String sensoresUnidos= "";
-        for(int i=0; i<Sensor.posAñadir; i++){           
-            sensoresUnidos = sensoresUnidos + sensores[i].toString();     
+        for(int i=0; i<v1.cantidadSensores(); i++){           
+            sensoresUnidos = sensoresUnidos + v1.getSensores().get(i).toString();     
         }
         if(sensoresUnidos.equals("")){
-            sensoresUnidos = "no hay sensores";
+            sensoresUnidos = "En el vehiculo no hay sensores";
         }
         return sensoresUnidos; 
     }
 
-    public static int cantidadSensores(){
-        return posAñadir;
-    }
-
     public static String temperaturaSensores(){
-        String temperatura = "";
-        if(posAñadir !=0){
-            for(int i = 0; i<posAñadir; i++){
-                if((sensores[i].getTipo()).equals("temperatura")){
-                    temperatura = temperatura + sensores[i].toString();
+        String infoTemperaturas = "";
+        for(int i=0; i<Vehiculo.vehiculos.size(); i++){
+            if(Vehiculo.vehiculos.get(i).cantidadSensores()!=0){
+                for (int j=0; j<Vehiculo.vehiculos.get(i).cantidadSensores(); j++){
+                    if((Vehiculo.vehiculos.get(i).getSensores().get(j).getTipo()).equals("temperatura")){
+                        infoTemperaturas = infoTemperaturas + Vehiculo.vehiculos.get(i).getSensores().get(j).toString();
+                    }
                 }
-            }  
+            } 
         }
-        if(temperatura.equals("")){
-            temperatura = "no hay sensores de tipo temperatura";
+        if(infoTemperaturas.equals("")){
+            infoTemperaturas = "no hay sensores de tipo temperatura";
         }
-        return temperatura;
+
+        return infoTemperaturas;
     }
 
-    public static Sensor[] listaTemperaturas(){
-        ArrayList<Sensor>cantidadTemperaturas = new ArrayList();
-        for(int i=0; i<posAñadir;i++){
-            int j=0;
-            if((sensores[i].getTipo()).equals("temperatura")){
-                cantidadTemperaturas.add(sensores[i]);
-                j++;
-            }
+    public static ArrayList<Sensor> temperaturaOrden(){
+        ArrayList<Sensor>datosTemperatura = new ArrayList();
+        for(int i=0; i<Vehiculo.vehiculos.size(); i++){
+            if(Vehiculo.vehiculos.get(i).cantidadSensores()!=0){
+                for (int j=0; j<Vehiculo.vehiculos.get(i).cantidadSensores(); j++){
+                    if((Vehiculo.vehiculos.get(i).getSensores().get(j).getTipo()).equals("temperatura")){
+                        datosTemperatura.add(Vehiculo.vehiculos.get(i).getSensores().get(j));
+                    }
+                }
+            } 
         }
-        int ocupado = cantidadTemperaturas.size();
-        Sensor te;
-        Sensor[] teOrden  = new Sensor [ocupado];
-        for(int i=0; i<ocupado;i++){
-            teOrden[i] = cantidadTemperaturas.get(i);
-        }
-        for(int j=1; j<teOrden.length-j;j++){
-            for(int k=0; k<teOrden.length-j;k++){
-                if(teOrden[k].getValor()>teOrden[k+1].getValor()){
-                    te = teOrden[k];
-                    teOrden[k] = teOrden[k+1];
-                    teOrden[k+1] = te;
+
+        Sensor t1;
+
+        for (int i=1; i<datosTemperatura.size(); i++){
+            for (int j=0; j<datosTemperatura.size()-i;j++){
+                if (datosTemperatura.get(j).getValor()>datosTemperatura.get(j+1).getValor()){
+                    t1 = datosTemperatura.get(j);
+                    datosTemperatura.set(j, datosTemperatura.get(j+1));
+                    datosTemperatura.set(j+1, t1);
                 }
             }
         }
-        return teOrden;
+
+        return datosTemperatura;
     }
 
-    public static String toStringOrden(Sensor[]temperatura){
-        String orden = "";
-        for(int i = 0; i<temperatura.length; i++){
-            orden = orden + (temperatura[i].toString());
+    public static String toStringOrdenTemperaturas(ArrayList <Sensor> temperatura){
+        String orden= "";
+        for(int i=0; i<temperatura.size(); i++){
+            orden = orden + (temperatura.get(i).toString());
+        }
+        if(orden.equals("")){
+            orden = "no hay sensores de tipo temperatura";
         }
         return orden;
     }
+
 }
