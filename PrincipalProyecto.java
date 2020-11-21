@@ -79,14 +79,14 @@ public class PrincipalProyecto{
             } else if (n == 9){
                 System.out.println(Vehiculo.unionSensorVehiculo());
             } else if (n == 10){
-                File file = new File("GitHub/vehiculos.txt");
+                File file = new File("vehiculos.txt.txt");
                 try{
                     Scanner input = new Scanner(file);
                     String line;
                     while(input.hasNextLine()){
                         line = input.nextLine();
                         String[] parts = line.split(",");
-                        Vehiculo v1 = new Vehiculo(Integer.parseInt(parts[0]), parts[1], Double.parseDouble(parts[2]), parts[3]);
+                        Vehiculo v = new Vehiculo(Integer.parseInt(parts[0]), parts[1], Double.parseDouble(parts[2]), parts[3]);
                     }
                 }catch(Exception e){
                     System.out.println(e.getMessage());

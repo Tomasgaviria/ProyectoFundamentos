@@ -1,5 +1,5 @@
-2020,Tesla,200.3,Blanco
-2009,Renault,18.34,Verde
+2020,Tesla,200.3,blanco
+2009,Renault,18.34,verde
 1988,Mercedes,4567,azul
 2017,Ferrari,927483,negro
 2004,Toyota,304.3,blanco
