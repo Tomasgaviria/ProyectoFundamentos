@@ -1,0 +1,5 @@
+2020,Tesla,200.3,blanco
+2009,Renault,18.34,verde
+2015,Chevrolet,3689,rojo
+2015,Ferrari,459076,amarillo
+1993,Toyota,400.2,gris
