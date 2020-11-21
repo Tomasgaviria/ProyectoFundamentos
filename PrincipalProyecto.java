@@ -79,7 +79,7 @@ public class PrincipalProyecto{
             } else if (n == 9){
                 System.out.println(Vehiculo.unionSensorVehiculo());
             } else if (n == 10){
-                File file = new File("vehiculos.txt");
+                File file = new File("GitHub/vehiculos.txt");
                 try{
                     Scanner input = new Scanner(file);
                     String line;
